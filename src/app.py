@@ -20,7 +20,7 @@ async def bones(ctx):
         await ctx.send(f"It might be a bones day!")
     else:
         if bones_day_json["value"] == "b":
-            await ctx.send(f"It's a bones day! :bones:")
+            await ctx.send(f"It's a bones day! :bone:")
         else:
             await ctx.send(f"It's not a bones day! :sob:")
 
