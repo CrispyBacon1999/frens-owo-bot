@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 
 from owoify import owoify
+import requests
+import datetime
 
 import os
 
@@ -9,6 +11,18 @@ token = os.environ["OWO_TOKEN"]
 
 bot = commands.Bot(command_prefix="$")
 
+@bot.command(name="bones")
+async def bones(ctx):
+    date = datetime.datetime.now()
+    bones_day_result = requests.get(f"https://bones-backend.herokuapp.com/bones/{date.month}-{date.day}-{date.year}")
+    bones_day_json = bones_day_result.json()
+    if "message" in bones_day_json:
+        ctx.send(f"It might be a bones day!")
+    else:
+        if bones_day_json["value"] == "b":
+            ctx.send(f"It's a bones day! :bones:")
+        else:
+            ctx.send(f"It's not a bones day! :sob:")
 
 @bot.command(name="owoify")
 async def command_owoify(ctx, *args):

@@ -1,3 +1,4 @@
 discord.py
 owoify-py
 discord-py-slash-command
+requests
