@@ -11,10 +11,13 @@ token = os.environ["OWO_TOKEN"]
 
 bot = commands.Bot(command_prefix="$")
 
+
 @bot.command(name="bones")
 async def bones(ctx):
     date = datetime.datetime.now()
-    bones_day_result = requests.get(f"https://bones-backend.herokuapp.com/bones/{date.month}-{date.day}-{date.year}")
+    bones_day_result = requests.get(
+        f"https://bones-backend.herokuapp.com/bones/{date.month}-{date.day}-{date.year}"
+    )
     bones_day_json = bones_day_result.json()
     if "message" in bones_day_json:
         await ctx.send(f"It might be a bones day!")
@@ -22,7 +25,8 @@ async def bones(ctx):
         if bones_day_json["value"] == "b":
             await ctx.send(f"It's a bones day! :bone:")
         else:
-            await ctx.send(f"It's not a bones day! :sob:")
+            await ctx.send(f"It's not a bones day! :sleeping_accommodation:")
+
 
 @bot.command(name="owoify")
 async def command_owoify(ctx, *args):
